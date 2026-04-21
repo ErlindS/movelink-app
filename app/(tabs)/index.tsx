@@ -13,6 +13,7 @@ import { LiveChart } from '@/components/LiveChart';
 import { AnimatedValue } from '@/components/AnimatedValue';
 import { GradientButton } from '@/components/GradientButton';
 import { FadeSlide } from '@/components/FadeSlide';
+import { AnimatedLogo } from '@/components/AnimatedLogo';
 
 function RecBadge() {
   const opacity = useSharedValue(1);
@@ -47,13 +48,11 @@ export default function TrainingScreen() {
 
         {/* Header */}
         <FadeSlide delay={50}>
-          <View style={styles.header}>
-            <View>
-              <Text style={styles.headerLabel}>MOVELINK</Text>
-              <Text style={styles.headerTitle}>Training</Text>
-            </View>
+          <View style={styles.headerRow}>
+            <AnimatedLogo />
             {isRecording && <RecBadge />}
           </View>
+          <Text style={styles.pageTitle}>Training</Text>
         </FadeSlide>
 
         {/* Sensor */}
@@ -61,10 +60,10 @@ export default function TrainingScreen() {
           <SensorCard status={status} deviceName={deviceName} onScan={startScan} onDisconnect={disconnectDevice} />
         </FadeSlide>
 
-        {/* Connected: live data */}
+        {/* Live readings */}
         {isConnected && latestReading && (
           <FadeSlide delay={140}>
-            <View style={styles.connectedBlock}>
+            <View style={styles.readingsBlock}>
               <Text style={styles.sectionLabel}>Accelerometer · m/s²</Text>
               <View style={styles.grid}>
                 <AnimatedValue label="X" value={latestReading.accelX} unit="m/s²" color={Colors.accentX} />
@@ -101,7 +100,7 @@ export default function TrainingScreen() {
         {!isConnected && status === 'idle' && (
           <FadeSlide delay={200}>
             <LinearGradient
-              colors={['rgba(198,42,18,0.08)', 'transparent']}
+              colors={['rgba(0,212,170,0.08)', 'transparent']}
               style={styles.idleCard}
             >
               <Text style={styles.idleIcon}>📡</Text>
@@ -119,13 +118,12 @@ export default function TrainingScreen() {
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: Colors.bg },
+  safe: { flex: 1, backgroundColor: 'transparent' },
   scroll: { flex: 1 },
   content: { padding: 20, gap: 14, paddingBottom: 40 },
 
-  header: { flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 4 },
-  headerLabel: { color: Colors.primary, fontSize: 10, fontWeight: '800', letterSpacing: 2 },
-  headerTitle: { color: Colors.text, fontSize: 28, fontWeight: '800', letterSpacing: -0.5 },
+  headerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 },
+  pageTitle: { color: Colors.text, fontSize: 30, fontWeight: '800', letterSpacing: -0.5, marginBottom: 4 },
 
   recBadge: {
     flexDirection: 'row', alignItems: 'center', gap: 6,
@@ -136,7 +134,7 @@ const styles = StyleSheet.create({
   recDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: Colors.primary },
   recLabel: { color: Colors.primary, fontSize: 11, fontWeight: '800', letterSpacing: 1.5 },
 
-  connectedBlock: { gap: 10 },
+  readingsBlock: { gap: 10 },
   sectionLabel: { color: Colors.textSub, fontSize: 10, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, marginTop: 4 },
   grid: { flexDirection: 'row', gap: 8 },
 

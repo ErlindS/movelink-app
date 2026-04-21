@@ -1,35 +1,24 @@
 export const Colors = {
-  // Backgrounds
-  bg: '#070707',
-  surface: 'rgba(255,255,255,0.05)',
-  surfaceBright: 'rgba(255,255,255,0.08)',
-  surfaceActive: 'rgba(198,42,18,0.1)',
-
-  // Borders
-  border: 'rgba(255,255,255,0.07)',
-  borderBright: 'rgba(255,255,255,0.14)',
-
-  // Brand
-  primary: '#C62A12',
-  primaryLight: '#FF3D1F',
-  primaryGlow: 'rgba(198,42,18,0.35)',
-  primaryDim: 'rgba(198,42,18,0.12)',
-
-  // Text
-  text: '#FFFFFF',
-  textSub: '#888888',
-  textMuted: '#3D3D3D',
-
-  // Status
-  connected: '#22C55E',
-  connectedGlow: 'rgba(34,197,94,0.3)',
-  warning: '#F59E0B',
-  error: '#EF4444',
-
-  // Chart axes
+  bg: '#07100E',
+  surface: 'rgba(0,255,180,0.04)',
+  surfaceBright: 'rgba(0,255,180,0.07)',
+  surfaceActive: 'rgba(0,212,170,0.12)',
+  border: 'rgba(0,255,180,0.08)',
+  borderBright: 'rgba(0,255,180,0.20)',
+  primary: '#00D4AA',
+  primaryLight: '#3FFFD4',
+  primaryGlow: 'rgba(0,212,170,0.35)',
+  primaryDim: 'rgba(0,212,170,0.10)',
+  text: '#E8FFF9',
+  textSub: '#4D8C7C',
+  textMuted: '#1C3530',
+  connected: '#00D4AA',
+  connectedGlow: 'rgba(0,212,170,0.3)',
+  warning: '#FBBF24',
+  error: '#F87171',
   accentX: '#60A5FA',
-  accentY: '#34D399',
-  accentZ: '#FBBF24',
+  accentY: '#00D4AA',
+  accentZ: '#C084FC',
 };
 
 export default Colors;

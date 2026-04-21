@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FadeSlide } from '@/components/FadeSlide';
+import { AnimatedLogo } from '@/components/AnimatedLogo';
 import { Colors } from '@/constants/Colors';
 import { useBLEStore } from '@/store';
 import { useBLE } from '@/hooks/useBLE';
@@ -17,6 +18,13 @@ export default function SettingsScreen() {
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="light-content" backgroundColor={Colors.bg} />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+
+        <FadeSlide delay={0}>
+          <View style={styles.headerRow}>
+            <AnimatedLogo />
+          </View>
+          <Text style={styles.pageTitle}>Gerät</Text>
+        </FadeSlide>
 
         <FadeSlide delay={60}>
           <Text style={styles.sectionLabel}>Sensor-Verbindung</Text>
@@ -45,7 +53,7 @@ export default function SettingsScreen() {
         <FadeSlide delay={240}>
           <Text style={styles.sectionLabel}>Über MoveLink</Text>
           <LinearGradient
-            colors={['rgba(198,42,18,0.07)', 'rgba(198,42,18,0.02)']}
+            colors={['rgba(0,212,170,0.07)', 'rgba(0,212,170,0.02)']}
             style={styles.aboutCard}
           >
             <View style={styles.aboutHeader}>
@@ -90,8 +98,12 @@ function TeamMember({ ap, name, role }: { ap: string; name: string; role: string
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: Colors.bg },
+  safe: { flex: 1, backgroundColor: 'transparent' },
   content: { padding: 20, gap: 10, paddingBottom: 40 },
+
+  headerRow: { marginBottom: 10 },
+  pageTitle: { color: Colors.text, fontSize: 30, fontWeight: '800', letterSpacing: -0.5, marginBottom: 4 },
+
   sectionLabel: {
     color: Colors.textSub, fontSize: 10, fontWeight: '700',
     textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8, marginTop: 8,
@@ -102,6 +114,7 @@ const styles = StyleSheet.create({
   rowLabel: { color: Colors.text, fontSize: 14, fontWeight: '500' },
   rowValue: { color: Colors.textSub, fontSize: 12, flex: 1, textAlign: 'right' },
   mono: { fontFamily: 'monospace', fontSize: 10 },
+
   aboutCard: {
     borderRadius: 20, padding: 20, gap: 4,
     borderWidth: 1, borderColor: Colors.primaryDim,
